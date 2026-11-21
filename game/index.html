@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightjar — a manor stealth game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1280" height="800"></canvas>
+
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div id="hud-floor"><span id="floor-name">FLOOR 1 — THE GALLERY</span><span id="floor-sub">Ashworth Manor</span></div>
+      <div id="hud-objective"><span id="objective-label">OBJECTIVE</span><span id="objective-text">Photograph the ledger, then reach the EXIT.</span></div>
+      <div id="hud-right">
+        <div id="hud-coins">COINS <b id="coins-left">3</b></div>
+        <div id="hud-alarm"><span>ALARM</span><div id="alarm-bar"><div id="alarm-fill"></div></div></div>
+      </div>
+    </div>
+    <div id="hud-bottom">
+      <div id="hud-status"><span id="status-dot"></span><span id="status-text">HIDDEN</span></div>
+      <div id="hud-hint">WASD / arrows — move &nbsp;·&nbsp; SHIFT — sneak &nbsp;·&nbsp; CLICK — toss a coin &nbsp;·&nbsp; E — photograph the ledger</div>
+      <div id="hud-rating"><span id="rating-text">RATING: GHOST</span></div>
+    </div>
+  </div>
+
+  <div id="overlay-title" class="overlay">
+    <div class="panel">
+      <div class="kicker">ASHWORTH MANOR · THREE FLOORS · ONE LEDGER EACH</div>
+      <h1>NIGHTJAR</h1>
+      <p class="tagline">Slip through the manor unseen. Learn the patrols. Use the dark.<br>
+      Photograph each floor's ledger — then walk out the EXIT like you were never there.</p>
+      <ul class="rules">
+        <li><b>Vision cones</b> — guards see you in their cone. Distance, lamplight and sneaking change how fast they spot you.</li>
+        <li><b>Shadows hide you</b> — dark floor halves detection. Lamplight nearly doubles it. Walls, crates and hedges block sight.</li>
+        <li><b>Footsteps carry</b> — running feet are heard. Sneak past a guard's ear.</li>
+        <li><b>Coins distract</b> — click to toss a coin (3 per floor). Guards leave their route to check the clink.</li>
+        <li><b>Cameras sweep</b> — their red cones feed the house alarm. Fill it and every guard hunts you.</li>
+        <li><b>GHOST</b> — finish the campaign without ever being seen.</li>
+      </ul>
+      <button id="btn-start" class="btn">ENTER THE MANOR</button>
+      <p class="fine">WASD / arrows to move · SHIFT to sneak · CLICK to toss a coin · E to photograph · M to mute</p>
+    </div>
+  </div>
+
+  <div id="overlay-floor" class="overlay hidden">
+    <div class="panel small">
+      <div class="kicker" id="floor-clear-kicker">FLOOR CLEAR</div>
+      <h2 id="floor-clear-title">Ledger photographed.</h2>
+      <p id="floor-clear-text">You slipped out unseen.</p>
+      <button id="btn-next-floor" class="btn">NEXT FLOOR</button>
+    </div>
+  </div>
+
+  <div id="overlay-caught" class="overlay hidden">
+    <div class="panel small">
+      <div class="kicker danger">CAUGHT</div>
+      <h2>A guard has you.</h2>
+      <p id="caught-text">The manor wakes. The floor resets — the ledger is still waiting.</p>
+      <button id="btn-retry" class="btn">TRY THE FLOOR AGAIN</button>
+    </div>
+  </div>
+
+  <div id="overlay-complete" class="overlay hidden">
+    <div class="panel">
+      <div class="kicker">THE MANOR IS BEHIND YOU</div>
+      <h1 id="complete-rating">GHOST</h1>
+      <p class="tagline" id="complete-text">Three ledgers photographed. Never seen, never heard.</p>
+      <div id="complete-stats"></div>
+      <button id="btn-again" class="btn">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <div id="autotest"></div>
+</div>
+
+<script src="audio.js"></script>
+<script src="vision.js"></script>
+<script src="levels.js"></script>
+<script src="guard.js"></script>
+<script src="camera.js"></script>
+<script src="player.js"></script>
+<script src="render.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
